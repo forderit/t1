@@ -1,1 +1,1 @@
-web: python websocket_server.py
+web: python check_assemblyai.py
