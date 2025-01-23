@@ -26,9 +26,10 @@ logger = logging.getLogger(__name__)
 def get_assemblyai_api_key():
     api_key = os.getenv("ASSEMBLYAI_API_KEY")
     if not api_key:
-        logger.error("ASSEMBLYAI_API_KEY environment variable not found. This will cause the application to fail.")
-        raise ValueError("ASSEMBLYAI_API_KEY not set as environment variable.")
-    logger.info(f"Loaded API Key: {api_key}")
+        logger.warning("ASSEMBLYAI_API_KEY environment variable not found. Falling back to local key.")
+        logger.error("ASSEMBLYAI_API_KEY environment variable not found. This will cause the application to fail.") # ADDED BACK
+        raise ValueError("ASSEMBLYAI_API_KEY not set as environment variable.")  # ADDED BACK
+    logger.info(f"Loaded API Key: {api_key}")  # added by the ai, keep this
     return api_key
 
 aai.settings.api_key = get_assemblyai_api_key()
